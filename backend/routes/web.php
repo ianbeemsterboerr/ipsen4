@@ -12,5 +12,5 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    return "Dit is de DEV branch <hr>" . $router->app->version();
 });
