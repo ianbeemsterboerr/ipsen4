@@ -1,0 +1,40 @@
+@font-face {
+  font-family: Blockletter;
+  src: url('/assets/Blockletter.woff');
+}
+
+header {
+  background: url('/assets/img/header_image.png') no-repeat;
+  background-size: auto;
+
+  width: 100%;
+  height: 100px;
+}
+
+#header_title {
+  color: white;
+  float: right;
+  font-family: Blockletter, serif;
+
+  padding: 25px 50px;
+}
+
+#header_title > * {
+  display: inline;
+}
+
+nav {
+  display: inline-block;
+
+  background-color: #111111;
+  color: white;
+  height: calc(100% - 100px);
+}
+
+#content-wrapper {
+  display: flex;
+}
+
+#router-wrapper {
+  flex-grow: 1;
+}

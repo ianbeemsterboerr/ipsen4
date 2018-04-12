@@ -1,0 +1,6 @@
+<svg width="100" [attr.height]="tournament.matches.length * 100">
+  <svg *ngFor="let match of tournament.matches; let i = index" [attr.y]="i * 100">
+    <rect [attr.y]="0" width="100" height="30"/>
+    <rect [attr.y]="35" width="100" height="30"/>
+  </svg>
+</svg>
