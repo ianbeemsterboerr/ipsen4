@@ -24,7 +24,7 @@ export class TournamentComponent implements OnInit {
     new Team('Team A', [this.players[0], this.players[1]]),
     new Team('Team B', [this.players[2], this.players[3]]),
     new Team('Team C', [this.players[4], this.players[5]]),
-    new Team('Team C', [this.players[6], this.players[7]])
+    new Team('Team D', [this.players[6], this.players[7]])
   ];
 
   tournament: Tournament = new Tournament(
@@ -35,7 +35,25 @@ export class TournamentComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    // print tournament
 
+    for (const bracket of this.tournament.brackets) {
+      console.log('Bracket: ' + this.tournament.brackets.indexOf(bracket));
+
+      for (const match of bracket.matches) {
+        let matchString = '\t match: ';
+
+        for (const opponent of match.opponents) {
+          matchString += opponent.name;
+
+          if (match.opponents.indexOf(opponent) !== match.opponents.length - 1) {
+            matchString += ' VS ';
+          }
+        }
+
+        console.log(matchString);
+      }
+    }
   }
 
 }

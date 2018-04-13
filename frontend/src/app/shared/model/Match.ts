@@ -1,7 +1,12 @@
 import {Team} from './team';
+import {Result} from './result';
 
 export class Match {
+  public result: Result[];
+
   constructor(
-    opponents: Team[]
-  ) {}
+    public opponents: Team[]
+  ) {
+    this.result = [];
+  }
 }
