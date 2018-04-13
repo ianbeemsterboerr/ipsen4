@@ -1,6 +1,7 @@
-<svg width="100" [attr.height]="tournament.teams.length * 100">
-  <svg *ngFor="let bracket of tournament.brackets">
-    <rect [attr.y]="0" width="100" height="30"/>
-    <rect [attr.y]="35" width="100" height="30"/>
+<svg [attr.width]="tournament.brackets.length * 100" [attr.height]="tournament.teams.length * 100">
+  <svg *ngFor="let bracket of tournament.brackets; let bracket_index = index" width="100" [attr.height]="tournament.teams.length * 100" [attr.x]="bracket_index * 100">
+    <svg *ngFor="let match of bracket.matches; let match_index = index" [attr.y]="match_index * 100">
+      <rect width="80" height="80" y="10" fill="#CCCCFF"/>
+    </svg>
   </svg>
 </svg>

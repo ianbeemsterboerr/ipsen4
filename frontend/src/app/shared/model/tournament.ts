@@ -5,7 +5,6 @@ import {Team} from './team';
 import {Bracket} from './bracket';
 
 export class Tournament {
-  public matches: Match[];
   public brackets: Bracket[];
 
   constructor(

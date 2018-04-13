@@ -9,34 +9,43 @@ import {Player} from '../shared/model/player';
   styleUrls: ['./tournament.component.css']
 })
 export class TournamentComponent implements OnInit {
-  players: Player[] = [
-    new Player('Player 1'),
-    new Player('Player 2'),
-    new Player('Player 3'),
-    new Player('Player 4'),
-    new Player('Player 5'),
-    new Player('Player 6'),
-    new Player('Player 7'),
-    new Player('Player 8')
-  ];
+  schema_height: number;
+  schema_width: number;
 
-  teams: Team[] = [
-    new Team('Team A', [this.players[0], this.players[1]]),
-    new Team('Team B', [this.players[2], this.players[3]]),
-    new Team('Team C', [this.players[4], this.players[5]]),
-    new Team('Team D', [this.players[6], this.players[7]])
-  ];
-
-  tournament: Tournament = new Tournament(
-    'Test tournament',
-    this.teams
-  );
+  players: Player[] = [];
+  teams: Team[] = [];
+  tournament: Tournament;
 
   constructor() { }
 
   ngOnInit() {
-    // print tournament
+    // Generate teams and players
+    const teamCount = 16;
 
+    // Generate players
+    for (let i = 0; i < teamCount * 2; i++) {
+      this.players.push(new Player('Player ' + i));
+    }
+
+    // Generate teams
+    for (let i = 0; i < teamCount; i++) {
+      this.teams.push(
+        new Team(
+          'Team ' + i,
+          [
+            this.players[i * 2],
+            this.players[i * 2 + 1]
+          ]
+        )
+      );
+    }
+
+    this.tournament  = new Tournament(
+      'Test tournament',
+      this.teams
+    );
+
+    // print tournament
     for (const bracket of this.tournament.brackets) {
       console.log('Bracket: ' + this.tournament.brackets.indexOf(bracket));
 
