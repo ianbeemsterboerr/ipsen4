@@ -6,27 +6,32 @@
        [attr.x]="bracket_index * bracket_width"
        [attr.y]="CalculateBracketYOffset(bracket)" >
 
-    <g *ngFor="let match of bracket.matches; let match_index = index;">
-      <rect [attr.width]="bracket_width - 20" height="30" [attr.y]="match_index * CalculateBracketYDistance(bracket)" fill="#555555"></rect>
-      <rect [attr.width]="bracket_width - 20" height="30" [attr.y]="match_index * CalculateBracketYDistance(bracket) + 40" fill="#555555"></rect>
+    <g *ngFor="let match of bracket.matches; let match_index = index;" (click)="onMatchClick(match)">
+      <rect [attr.width]="bracket_width - 20" height="30" [attr.y]="match_index * bracket_distances[bracket_index]" fill="#555555"></rect>
+      <rect [attr.width]="bracket_width - 20" height="30" [attr.y]="match_index * bracket_distances[bracket_index] + 40" fill="#555555"></rect>
 
-      <text x="5" [attr.y]="match_index * CalculateBracketYDistance(bracket) + 60" fill="white">{{match.opponents[0]?.name}}</text>
-      <text x="5" [attr.y]="match_index * CalculateBracketYDistance(bracket) + 20" fill="white">{{match.opponents[1]?.name}}</text>
+      <text x="5" [attr.y]="match_index * bracket_distances[bracket_index] + 20" fill="white">{{match.results[0]?.team?.name || 'To be determined'}}</text>
+
+      <text x="5" [attr.y]="match_index * bracket_distances[bracket_index] + 60" fill="white">{{match.results[1]?.team?.name || 'To be determined'}}</text>
+
+
+      <text [attr.x]="bracket_width - 30" text-anchor="end" [attr.y]="match_index * bracket_distances[bracket_index] + 20" fill="white">{{match.results[0]?.score}}</text>
+      <text [attr.x]="bracket_width - 30" text-anchor="end" [attr.y]="match_index * bracket_distances[bracket_index] + 60" fill="white">{{match.results[1]?.score}}</text>
 
       <polyline *ngIf="bracket_index != tournament.brackets.length - 1 && match_index % 2 == 0"
         [attr.points]="
-        (bracket_width-20) + ', ' + (match_index * CalculateBracketYDistance(bracket) + 35) +
-        ', '+ (bracket_width-10) +', ' + (match_index * CalculateBracketYDistance(bracket) + 35) +
-        ', '+ (bracket_width-10) +', ' + (match_index * CalculateBracketYDistance(bracket) + 35 + CalculateBracketYDistance(bracket) / 2) +
-        ', '+ (bracket_width) +', ' + (match_index * CalculateBracketYDistance(bracket) + 35 + CalculateBracketYDistance(bracket) / 2)"
+              (bracket_width-20)  +', ' + (match_index * bracket_distances[bracket_index] + 35) +
+        ', '+ (bracket_width-10)  +', ' + (match_index * bracket_distances[bracket_index] + 35) +
+        ', '+ (bracket_width-10)  +', ' + (match_index * bracket_distances[bracket_index] + 35 + bracket_distances[bracket_index] / 2) +
+        ', '+ (bracket_width)     +', ' + (match_index * bracket_distances[bracket_index] + 35 + bracket_distances[bracket_index] / 2)"
                 style="fill:none;stroke:#555555;stroke-width:3" ></polyline>
 
       <polyline *ngIf="bracket_index != tournament.brackets.length - 1 && match_index % 2 != 0"
                 [attr.points]="
-        (bracket_width-20) + ', ' + (match_index * CalculateBracketYDistance(bracket) + 35) +
-        ', '+ (bracket_width-10) +', ' + (match_index * CalculateBracketYDistance(bracket) + 35) +
-        ', '+ (bracket_width-10) +', ' + (match_index * CalculateBracketYDistance(bracket) + 35 - CalculateBracketYDistance(bracket) / 2) +
-        ', '+ (bracket_width) +', ' + (match_index * CalculateBracketYDistance(bracket) + 35 - CalculateBracketYDistance(bracket) / 2)"
+              (bracket_width-20)  +', ' + (match_index * bracket_distances[bracket_index] + 35) +
+        ', '+ (bracket_width-10)  +', ' + (match_index * bracket_distances[bracket_index] + 35) +
+        ', '+ (bracket_width-10)  +', ' + (match_index * bracket_distances[bracket_index] + 35 - bracket_distances[bracket_index] / 2) +
+        ', '+ (bracket_width)     +', ' + (match_index * bracket_distances[bracket_index] + 35 - bracket_distances[bracket_index] / 2)"
                 style="fill:none;stroke:#555555;stroke-width:3" ></polyline>
     </g>
 
