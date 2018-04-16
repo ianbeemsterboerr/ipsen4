@@ -1,7 +1,35 @@
-<svg [attr.width]="tournament.brackets.length * 100" [attr.height]="tournament.teams.length * 100">
-  <svg *ngFor="let bracket of tournament.brackets; let bracket_index = index" width="100" [attr.height]="tournament.teams.length * 100" [attr.x]="bracket_index * 100">
-    <svg *ngFor="let match of bracket.matches; let match_index = index" [attr.y]="match_index * 100">
-      <rect width="80" height="80" y="10" fill="#CCCCFF"/>
-    </svg>
+<svg [attr.width]="schema_width" [attr.height]="schema_height" class="tournament">
+
+  <svg *ngFor="let bracket of tournament.brackets; let bracket_index = index"
+       [attr.width]="bracket_width"
+       [attr.height]="schema_height"
+       [attr.x]="bracket_index * bracket_width"
+       [attr.y]="CalculateBracketYOffset(bracket)" >
+
+    <g *ngFor="let match of bracket.matches; let match_index = index;">
+      <rect [attr.width]="bracket_width - 20" height="30" [attr.y]="match_index * CalculateBracketYDistance(bracket)" fill="#555555"></rect>
+      <rect [attr.width]="bracket_width - 20" height="30" [attr.y]="match_index * CalculateBracketYDistance(bracket) + 40" fill="#555555"></rect>
+
+      <text x="5" [attr.y]="match_index * CalculateBracketYDistance(bracket) + 60" fill="white">{{match.opponents[0]?.name}}</text>
+      <text x="5" [attr.y]="match_index * CalculateBracketYDistance(bracket) + 20" fill="white">{{match.opponents[1]?.name}}</text>
+
+      <polyline *ngIf="bracket_index != tournament.brackets.length - 1 && match_index % 2 == 0"
+        [attr.points]="
+        (bracket_width-20) + ', ' + (match_index * CalculateBracketYDistance(bracket) + 35) +
+        ', '+ (bracket_width-10) +', ' + (match_index * CalculateBracketYDistance(bracket) + 35) +
+        ', '+ (bracket_width-10) +', ' + (match_index * CalculateBracketYDistance(bracket) + 35 + CalculateBracketYDistance(bracket) / 2) +
+        ', '+ (bracket_width) +', ' + (match_index * CalculateBracketYDistance(bracket) + 35 + CalculateBracketYDistance(bracket) / 2)"
+                style="fill:none;stroke:#555555;stroke-width:3" ></polyline>
+
+      <polyline *ngIf="bracket_index != tournament.brackets.length - 1 && match_index % 2 != 0"
+                [attr.points]="
+        (bracket_width-20) + ', ' + (match_index * CalculateBracketYDistance(bracket) + 35) +
+        ', '+ (bracket_width-10) +', ' + (match_index * CalculateBracketYDistance(bracket) + 35) +
+        ', '+ (bracket_width-10) +', ' + (match_index * CalculateBracketYDistance(bracket) + 35 - CalculateBracketYDistance(bracket) / 2) +
+        ', '+ (bracket_width) +', ' + (match_index * CalculateBracketYDistance(bracket) + 35 - CalculateBracketYDistance(bracket) / 2)"
+                style="fill:none;stroke:#555555;stroke-width:3" ></polyline>
+    </g>
+
   </svg>
+
 </svg>
