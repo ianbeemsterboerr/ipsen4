@@ -12,5 +12,7 @@
 */
 
 $router->get('/', function () use ($router) {
-    return "Dit is de DEV branch <hr>" . $router->app->version();
+    $response = var_export(app('db')->select("SELECT * FROM Opponent"), true);
+
+    return "Dit is de DEV branch <hr>" . $router->app->version() . $response;
 });
