@@ -8,6 +8,8 @@ import { TournamentComponent } from './tournament/tournament.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ScoreComponent } from './tournament/score/score.component';
 import {FormsModule} from '@angular/forms';
+import {AngularFontAwesomeModule} from 'angular-font-awesome';
+import {SharedModule} from './shared/shared.module';
 
 
 @NgModule({
@@ -20,6 +22,8 @@ import {FormsModule} from '@angular/forms';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    AngularFontAwesomeModule,
+    SharedModule,
     NgbModule.forRoot()
   ],
   entryComponents: [

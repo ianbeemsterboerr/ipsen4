@@ -4,11 +4,23 @@
 }
 
 header {
+  position: relative;
+
   background: url('/assets/img/header_image.png') no-repeat;
   background-size: auto;
 
   width: 100%;
   height: 100px;
+}
+
+#header_image {
+  margin-top: auto;
+  margin-bottom: auto;
+
+  position: absolute;
+  top: 0; left: 1rem; bottom: 0; right: 0;
+
+  height: 3rem;
 }
 
 #header_title {
@@ -24,18 +36,49 @@ header {
 }
 
 nav {
+  position: relative;
   display: inline-block;
 
   background-color: #111111;
-  color: white;
+  color: #ccc;
 
-  padding: 0 25px;
+  /*padding: .5rem 1rem;*/
+}
+
+#navHead {
+  position: absolute;
+
+  font-size: .75rem;
+  text-align: center;
+
+  width: 100%;
+}
+
+nav > hr {
+  border-top-color: #ccc;
 }
 
 nav > ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+
+  width: 9.5rem;
+
+  line-height: 2rem;
+}
+
+nav > ul > li:not(:last-child) {
+  border-bottom: 1px solid #888;
+}
+
+.navItem > a {
+  padding: 0 1rem;
+  font-weight: bold;
+}
+
+#navClose {
+  padding-left: .5rem;
 }
 
 #content-wrapper {
@@ -44,4 +87,13 @@ nav > ul {
 
 #router-wrapper {
   flex-grow: 1;
+
+  background: repeating-linear-gradient(
+    -45deg,
+    #353535,
+    #353535 5px,
+    #2e2e2e 5px,
+    #2e2e2e 6px
+  );
 }
+

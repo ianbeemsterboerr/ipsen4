@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-3 col-xs-offset-3">
+      <div class="input-group number-spinner">
+				<span class="input-group-btn">
+					<button class="btn btn-default" (click)="decrement()"><fa name="minus"></fa></button>
+				</span>
+        <input type="text" class="form-control text-center" value="1" [(ngModel)]="result.score" [ngModelOptions]="{standalone: true}">
+        <span class="input-group-btn">
+					<button class="btn btn-default" (click)="increment()"><fa name="plus"></fa></button>
+				</span>
+      </div>
+    </div>
+  </div>
+</div>

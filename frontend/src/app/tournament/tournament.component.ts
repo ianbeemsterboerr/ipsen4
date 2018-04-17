@@ -30,7 +30,7 @@ export class TournamentComponent implements OnInit {
 
   ngOnInit() {
     // Generate teams and players
-    const teamCount = 32;
+    const teamCount = 16;
 
     // Generate players
     for (let i = 0; i < teamCount * 2; i++) {

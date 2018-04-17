@@ -7,16 +7,16 @@
        [attr.y]="CalculateBracketYOffset(bracket)" >
 
     <g *ngFor="let match of bracket.matches; let match_index = index;" (click)="onMatchClick(match)">
-      <rect [attr.width]="bracket_width - 20" height="30" [attr.y]="match_index * bracket_distances[bracket_index]" fill="#555555"></rect>
-      <rect [attr.width]="bracket_width - 20" height="30" [attr.y]="match_index * bracket_distances[bracket_index] + 40" fill="#555555"></rect>
+      <rect [attr.width]="bracket_width - 20" height="30" [attr.y]="match_index * bracket_distances[bracket_index]" fill="#666"></rect>
+      <rect [attr.width]="bracket_width - 20" height="30" [attr.y]="match_index * bracket_distances[bracket_index] + 40" fill="#666"></rect>
 
       <text x="5" [attr.y]="match_index * bracket_distances[bracket_index] + 20" fill="white">{{match.results[0]?.team?.name || 'To be determined'}}</text>
 
       <text x="5" [attr.y]="match_index * bracket_distances[bracket_index] + 60" fill="white">{{match.results[1]?.team?.name || 'To be determined'}}</text>
 
 
-      <text [attr.x]="bracket_width - 30" text-anchor="end" [attr.y]="match_index * bracket_distances[bracket_index] + 20" fill="white">{{match.results[0]?.score}}</text>
-      <text [attr.x]="bracket_width - 30" text-anchor="end" [attr.y]="match_index * bracket_distances[bracket_index] + 60" fill="white">{{match.results[1]?.score}}</text>
+      <text [attr.x]="bracket_width - 30" text-anchor="end" [attr.y]="match_index * bracket_distances[bracket_index] + 20" fill="#ccc">{{match.results[0]?.score}}</text>
+      <text [attr.x]="bracket_width - 30" text-anchor="end" [attr.y]="match_index * bracket_distances[bracket_index] + 60" fill="#ccc">{{match.results[1]?.score}}</text>
 
       <polyline *ngIf="bracket_index != tournament.brackets.length - 1 && match_index % 2 == 0"
         [attr.points]="

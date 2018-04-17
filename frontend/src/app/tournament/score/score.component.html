@@ -5,10 +5,10 @@
   </button>
 </div>
 <div class="modal-body">
-  <div *ngFor="let result of results">
-    <p>{{result.team.name}}</p>
+  <div *ngFor="let result of results" class="score">
+    <p>{{result.team.name}}:</p>
 
-    <input type="number" [(ngModel)]="result.score" [ngModelOptions]="{standalone: true}">
+    <app-number-spinner [result]="result"></app-number-spinner>
   </div>
 </div>
 <div class="modal-footer">
